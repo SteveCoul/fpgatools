@@ -41,7 +41,13 @@ RUN cp -Ra prjtrellis-db/* /usr/local/share/trellis/database/
 RUN cd build-ecp5 && make
 RUN cd build-ecp5 && make install
 RUN cd yosys && make install
+# CANT USE DFU-UTIL IN DOCKER : RUN git clone https://github.com/libusb/libusb.git
+# CANT USE DFU-UTIL IN DOCKER : RUN cd libusb && ./bootstrap.sh
+# CANT USE DFU-UTIL IN DOCKER : RUN cd libusb && ./configure --disable-udev
+# CANT USE DFU-UTIL IN DOCKER : RUN cd libusb && make install
+# CANT USE DFU-UTIL IN DOCKER : RUN curl -L https://dfu-util.sourceforge.net/releases/dfu-util-0.11.tar.gz | tar zx
 WORKDIR /home
 _EOF_
 docker build -t ecp5tools . 2>/dev/null
+rm -f Dockerfile
 docker run -it -v$PWD:/home ecp5tools $@
