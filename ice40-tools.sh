@@ -37,19 +37,9 @@ RUN cd /icestorm && make -j5
 RUN cd /icestorm && make install
 RUN cd build-ice40 && make -j1
 RUN cd build-ice40 && make install
-# RUN cd prjtrellis && git clone --recursive https://github.com/YosysHQ/prjtrellis
-# RUN cd prjtrellis/libtrellis && cmake -DCMAKE_INSTALL_PREFIX=/usr/local .
-# RUN cd prjtrellis/libtrellis && make
-# RUN cd prjtrellis/libtrellis && make install
-# RUN git clone https://github.com/YosysHQ/prjtrellis-db
-# RUN mkdir -p /usr/local/share/trellis/database/
-# RUN cp -Ra prjtrellis-db/* /usr/local/share/trellis/database/
-# RUN cd build-ecp5 && make
-# RUN cd build-ecp5 && make install
 WORKDIR /home
 _EOF_
-docker build -t ice40tools . 
-# 2>/dev/null
+docker build -t ice40tools . 2>/dev/null
 rm -f Dockerfile
 docker run -m 6g -it -v$PWD:/home ice40tools $@
 
