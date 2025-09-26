@@ -40,6 +40,7 @@ RUN cd build-ice40 && make install
 WORKDIR /home
 _EOF_
 docker build -t ice40tools . 2>/dev/null
+# docker build -t ice40tools . 
 rm -f Dockerfile
 docker run -m 6g -it -v$PWD:/home ice40tools $@
 
