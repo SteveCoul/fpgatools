@@ -50,4 +50,4 @@ WORKDIR /home
 _EOF_
 docker build -t ecp5tools . 2>/dev/null
 rm -f Dockerfile
-docker run -it -v$PWD:/home ecp5tools $@
+docker run --rm -it -v$PWD:/home ecp5tools $@
